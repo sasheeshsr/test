@@ -1,0 +1,24 @@
+<aura:component implements="force:lightningQuickAction,flexipage:availableForAllPageTypes" controller="WeatherInformation_Controller" >
+	<aura:attribute name="objectref" type="WeatherInformation_Controller.weatherwrapper" ></aura:attribute>
+
+	<aura:attribute name="objectrefss" type="String" ></aura:attribute>
+    <aura:handler name="init" value="this" action="{!c.doinit}"></aura:handler>	
+        
+    
+        <div class="weathercolor">
+            <div class="slds-align_absolute-center weathercss">{!v.objectref.todaydate}</div> 
+            <div class="slds-align_absolute-center weathercss">{!v.objectref.locname}</div>
+            <br></br><br></br><br></br>
+            <div class="slds-align_absolute-center weathercss">{!v.objectref.weather_descriptions}</div>
+            <img class="slds-align_absolute-center imagstyle" src="{!v.objectref.weather_icons}"></img>
+            <br></br>
+            <div class="slds-align_absolute-center"><h1 style="font-size: xxx-large;">{!v.objectref.temperature}°c</h1></div>
+        	<br></br>
+    		<div class="slds-align_absolute-center">
+                Wind : {!v.objectref.wind} km/h<br></br>
+                Humidity : {!v.objectref.humidity} %<br></br>
+                Precip : {!v.objectref.precip} mm
+            </div>
+            <lightning:button onclick="{!c.fatchcurrentweather}">Current Location Weather</lightning:button>
+  		 </div>
+</aura:component>

@@ -1,0 +1,166 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="JobWizardController">
+    <aura:attribute name = "Jobs" type = "Object"/>
+    <aura:attribute name ="NameClicked" type = "boolean" default="false"/>
+    <aura:attribute name ="ButtonClicked" type = "boolean" default="false"/>
+    <aura:attribute name ="record" type="String"/>
+    
+    <aura:attribute name = "Skills" type = "Object"/>
+    <aura:attribute name = "Candidates" type = "Object"/>
+    
+    <aura:handler name="change" value="{!v.ButtonClicked}" action="{!c.itemsChange}"/>
+    <aura:handler name = "init" value = "{!this}" action = "{!c.doInit}"/> 
+    <aura:if isTrue="{!!v.NameClicked}">
+        <div class ="slds-grid slds-box  slds-theme_shade" > 
+            <div class=" highlights-icon-container slds-avatar slds-m-right_small icon slds-col  slds-size_3-of-24" style="background-color: rgb(72, 199, 200);">
+                
+            </div>
+            <div class=" slds-size_2-of-12 slds-text-heading-small logo"
+                 style ="font-size:25px;" > <b>Job Wizard</b> 
+            </div> 
+            
+        </div>
+        
+        <div class ="slds-box  slds-theme_default" style="style= width:100%; height:100%">
+            <table class="slds-table slds-table--bordered ">
+                <thead>
+                    <tr>
+                        <th scope="col"><span>Job Name</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.Jobs}" var="item">
+                        <tr>
+                            <td><a onclick="{!c.Record}"  id="{!item.Id}" class="slds-truncate">{!item.Name} </a></td>
+                            
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+        </div>
+    </aura:if>
+    
+    <aura:if isTrue="{!v.NameClicked}">
+        <div class ="slds-grid slds-box  slds-theme_shade" > 
+            <div class=" highlights-icon-container slds-avatar slds-m-right_small icon slds-col  slds-size_3-of-24" style="background-color: rgb(72, 199, 200);">
+                <img src="https://samasr92-dev-ed.my.salesforce.com/img/icon/t4v35/custom/custom20_120.png"  /> 
+            </div>
+            <div class=" slds-size_2-of-12 slds-text-heading-small logo"
+                 style ="font-size:25px;" > <b>Job </b> 
+            </div> 
+            <div class = "slds-col slds-col--padded slds-size_1-of-6"> </div>
+            <div class = "slds-col slds-col--padded slds-size_1-of-6"> </div>
+            <div class = "slds-col slds-col--padded slds-size_1-of-6"></div>
+            <div class = "slds-col slds-col--padded slds-size_1-of-6" ></div>
+            <div class = "slds-col slds-col--padded slds-size_1-of-6" >
+                <lightning:button class="slds-button " onclick="{!c.gotoURL}"> Add a Candidate</lightning:button>
+            </div>
+        </div>
+        <br> </br>
+        <div class ="slds-box  slds-theme_default" style= "width:100%;">
+            <div class ="slds-grid slds-box  slds-theme_shade" > 
+                <div class=" highlights-icon-container slds-avatar slds-m-right_small icon slds-col  slds-size_3-of-24" style="background-color: rgb(72, 199, 200);">
+                    <img src="https://samasr92-dev-ed.my.salesforce.com/img/icon/t4v35/custom/custom20_120.png"  /> 
+                </div>
+                <div class=" slds-size_2-of-12 slds-text-heading-small logo"
+                     style ="font-size:20px;" > <b>Skills</b> 
+                </div> 
+                
+            </div> 
+            <table class="slds-table slds-table--bordered ">
+                <thead>
+                    <tr>
+                        <th scope="col"><span>Skills Name </span></th>
+                        
+                        <th scope="col"><span>Candidate Name </span></th>
+                        
+                        <th scope="col"><span>Created Date </span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.Skills}" var="item">
+                        <tr>
+                            <td><span  class="slds-truncate">{!item.Name} </span></td>
+                            
+                            
+                            <td><span  class="slds-truncate">{!item.Candidate__r.Name} </span></td>
+                            
+                            
+                            <td><span  class="slds-truncate">{!item.CreatedDate} </span></td>
+                            
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+        </div>
+        <br> </br>
+        
+        <div class ="slds-box  slds-theme_default" style="style= width:100%;">
+            <div class ="slds-grid slds-box  slds-theme_shade" > 
+                <div class="slds-col  slds-size_1-of-24">
+                    <lightning:icon style ="" iconName="standard:contact" title="custom88" /> 
+                </div>
+                <div class=" slds-size_2-of-12 slds-text-heading-small logo"
+                     style ="font-size:20px;" > <b>Candidates</b> 
+                </div> 
+                
+            </div>    
+            <table class="slds-table slds-table--bordered ">
+                <thead>
+                    <tr>
+                        <th scope="col"><span>Candidate Name </span></th>
+                        
+                        <th scope="col"><span>Acount Name </span></th>
+                        
+                        <th scope="col"><span>Phone </span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.Candidates}" var="item">
+                        <tr>
+                            <td><span class="slds-truncate" >{!item.Name} </span></td>
+                            
+                            
+                            <td><span class="slds-truncate" >{!item.Account.Name} </span></td>
+                            
+                            
+                            <td><span class="slds-truncate" >{!item.Phone} </span></td>
+                            
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+        </div>
+        <br> </br>
+    </aura:if>
+    
+    <aura:if isTrue="{!v.ButtonClicked}"> 
+        <div aura:id="exampleModal"  role = "dialog" class = "slds-modal slds-fade-in-open ">
+            <div class = "slds-modal__container">
+                <!--Modal Box Header Start-->
+                <header class = "slds-modal__header slds-theme_alert-texture">
+                    <h1 class = "slds-text-heading--medium  ">Search Candidate</h1>
+                    
+                </header>
+                <!--Modal Box Header End-->
+                <!--Modal Box Content Start-->
+                <div class = "slds-modal__content slds-p-around--medium">
+                    <div>
+                        <c:SearchCandidateOnJob recordId="{!v.record}" ButtonClicked="{!v.ButtonClicked}"/>
+                    </div>
+                </div>
+                <!--Modal Box Content End-->
+                <!--Modal Box Button Start-->
+                <footer class = "slds-modal__footer ">
+                    <div style = "float:left">
+                        
+                        <br> </br>
+                    </div>    
+                </footer>
+                <!--Modal Box Button End-->
+            </div>
+        </div>
+        
+        
+    </aura:if>
+    
+</aura:component>

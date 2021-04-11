@@ -1,0 +1,37 @@
+<aura:component 
+                controller="SearchCandidateOnJobController" 
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" 
+                access="global" >
+    <aura:attribute name="lstCan" type="Object"/>
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="showPanel" type="Boolean" default="false"/>
+    <aura:attribute name = "showRecord" type = "Boolean" default = "false"/>
+    <aura:attribute name="searchKey" type="String"/>
+    <aura:attribute name="listOfSearchRecords" type="List"/>
+    <aura:attribute name="recId" type="String"/>
+    <aura:attribute name ="ButtonClicked" type = "boolean" default="false"/>
+    <aura:attribute name ="listOfCandidatesP" type="String[]" />
+   
+    <div> 
+        <div class="slds-card">
+            <div class="slds-p-around_medium">
+                <lightning:input
+                                 aura:id="enter-search"
+                                 name="Enter Skill"
+                                 label="Enter Skill"
+                                 value="{!v.searchKey}"
+                                 type="search" onchange="{!c.searchCandidate}"/>
+            </div>
+        </div>
+        <aura:if isTrue="{!v.showPanel}">
+            <aura:iteration items="{!v.listOfSearchRecords}"  var="item">
+                <c:SearchResultItem listOfCandidates="{!v.listOfCandidatesP}" item="{!item}" jobId="{!v.recId}" ButtonClicked="{!v.ButtonClicked}"/>                              
+            </aura:iteration>                 
+            
+           
+        </aura:if>
+        <lightning:button variant="brand"  label="Add Candidate" title="Add Candidate"  onclick="{!c.addtojob}"/>
+        <lightning:button variant="brand"  label="Cancel" title="Cancel"  onclick="{!c.cancel}"/>
+    </div>
+  
+</aura:component>

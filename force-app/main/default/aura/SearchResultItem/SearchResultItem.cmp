@@ -1,0 +1,14 @@
+<aura:component controller="SearchCandidateOnJobController">
+    <aura:attribute name="item" type="Object"/>
+    <aura:attribute name="jobId" type="String"/>
+    <aura:attribute name ="ButtonClicked" type = "boolean" default="false"/>
+    <aura:attribute name ="listOfCandidates" type="String[]" />
+    <aura:attribute name="isChecked" type="boolean" default="false"/>
+    <aura:attribute name ="candidateExist" type="boolean" default="true"/>
+    <div class="slds-card" >
+        <div class="slds-p-around_medium" >
+            <lightning:input type="checkbox" checked="{!v.isChecked}" data-id="{!v.item.Candidate__r.Id}" aura:id="chk" label="{!v.item.Candidate__r.Name}" value ="{!v.item.Candidate__r.Id}" onchange="{!c.getSelectedCandidate}"/>
+        </div>
+    </div>
+    
+</aura:component>

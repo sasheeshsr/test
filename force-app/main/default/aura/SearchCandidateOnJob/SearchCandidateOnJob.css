@@ -1,0 +1,5 @@
+.THIS .slds-card {
+ 	border: var(--lwc-borderWidthThin,1px) solid var(--lwc-cardColorBorder,rgb(221, 219, 218)) !important;
+    border-radius: var(--lwc-borderRadiusMedium,0.25rem) !important;
+    box-shadow: var(--lwc-cardShadow,0 2px 2px 0 rgba(0, 0, 0, 0.10)) !important;
+}
